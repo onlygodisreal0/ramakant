@@ -1,1 +1,107 @@
-theme: minima
+# Site settings
+title: Шри Рамакант Махарадж
+description: "Учения и переводы Шри Рамакант Махараджа - линия Навнатх сампрадайи"
+baseurl: ""
+url: "https://ramakant.github.io"
+
+# Theme
+remote_theme: just-the-docs/just-the-docs@v0.8.0
+
+# Enable or disable the site search
+search_enabled: true
+
+# Aux links for the upper right navigation
+aux_links:
+  "GitHub Repository":
+    - "//github.com/ramakant/ramakant"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: true
+
+# Sort order for navigation links
+nav_sort: case_insensitive
+
+# Color scheme
+color_scheme: dark
+
+# Callouts
+callouts:
+  highlight:
+    color: yellow
+  important:
+    color: blue
+  new:
+    color: green
+  note:
+    color: purple
+  warning:
+    color: red
+
+# Collections
+collections:
+  ultimate-truth:
+    name: Ultimate Truth
+    output: true
+    permalink: /:collection/:path/
+  consciousness-and-absolute:
+    name: Consciousness and Absolute
+    output: true
+    permalink: /:collection/:path/
+  self-realization:
+    name: Self Realization
+    output: true
+    permalink: /:collection/:path/
+
+# Default values for front matter
+defaults:
+  - scope:
+      path: ""
+      type: "ultimate-truth"
+    values:
+      layout: "book"
+      parent: "Ultimate Truth"
+  - scope:
+      path: ""
+      type: "consciousness-and-absolute"
+    values:
+      layout: "book"
+      parent: "Consciousness and Absolute"
+  - scope:
+      path: ""
+      type: "self-realization"
+    values:
+      layout: "book"
+      parent: "Self Realization"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Include
+include:
+  - _pages
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false

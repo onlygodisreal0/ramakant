@@ -1,0 +1,214 @@
+---
+layout: default
+---
+
+<div class="book-container">
+  {% if page.parent %}
+    <nav class="book-nav">
+      <div class="book-breadcrumb">
+        <a href="{{ site.baseurl }}/" class="book-home">Главная</a>
+        <span class="book-separator">/</span>
+        <a href="{{ site.baseurl }}/{{ page.parent | downcase | replace: ' ', '-' }}/" class="book-parent">{{ page.parent }}</a>
+        {% if page.title %}
+          <span class="book-separator">/</span>
+          <span class="book-current">{{ page.title }}</span>
+        {% endif %}
+      </div>
+    </nav>
+  {% endif %}
+
+  <div class="book-content">
+    <div class="book-header">
+      {% if page.title %}
+        <h1 class="book-title">{{ page.title }}</h1>
+      {% endif %}
+      {% if page.subtitle %}
+        <p class="book-subtitle">{{ page.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="book-body">
+      {{ content }}
+    </div>
+
+    {% if page.has_children or page.parent %}
+      <nav class="book-navigation">
+        {% if page.previous_page %}
+          <a href="{{ page.previous_page.url | relative_url }}" class="nav-prev">
+            ← {{ page.previous_page.title }}
+          </a>
+        {% endif %}
+        
+        {% if page.next_page %}
+          <a href="{{ page.next_page.url | relative_url }}" class="nav-next">
+            {{ page.next_page.title }} →
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.book-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.book-nav {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.book-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.book-home, .book-parent {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.book-home:hover, .book-parent:hover {
+  color: var(--link-color-hover);
+}
+
+.book-separator {
+  margin: 0 0.5rem;
+  color: var(--text-color-light);
+}
+
+.book-current {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.book-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.book-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.book-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-color-light);
+  font-style: italic;
+  margin: 0;
+}
+
+.book-body {
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+.book-body h1,
+.book-body h2,
+.book-body h3,
+.book-body h4,
+.book-body h5,
+.book-body h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.book-body h1 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.book-body h2 {
+  font-size: 1.5rem;
+}
+
+.book-body h3 {
+  font-size: 1.3rem;
+}
+
+.book-body p {
+  margin-bottom: 1.2rem;
+}
+
+.book-body blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--text-color-light);
+}
+
+.book-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.nav-prev, .nav-next {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--background-secondary);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+}
+
+.nav-prev:hover, .nav-next:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.nav-prev {
+  margin-right: auto;
+}
+
+.nav-next {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .book-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .book-title {
+    font-size: 2rem;
+  }
+  
+  .book-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .book-body {
+    font-size: 1rem;
+  }
+  
+  .book-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-prev, .nav-next {
+    text-align: center;
+    width: 100%;
+  }
+}
+</style>
